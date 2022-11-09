@@ -1,0 +1,179 @@
+/* RESET */
+
+* {
+	/* Remove default margin on everything */
+	margin: 0;
+	/* Remove default padding on everything */
+	padding: 0;
+	/* Calc `em` based line height, bigger line height for smaller font size and smaller line height for bigger font size: https://kittygiraudel.com/2020/05/18/using-calc-to-figure-out-optimal-line-height/ */
+	line-height: calc(0.25rem + 1em + 0.25rem);
+}
+
+/* Use a more-intuitive box-sizing model on everything */
+*,
+::before,
+::after {
+	box-sizing: border-box;
+}
+
+/* Remove border and set sensible defaults for backgrounds, on all elements except fieldset progress and meter */
+*:where(:not(fieldset, progress, meter)) {
+	border-width: 0;
+	border-style: solid;
+	background-origin: border-box;
+	background-repeat: no-repeat;
+}
+
+html {
+	/* Allow percentage-based heights in the application */
+	block-size: 100%;
+	/* Making sure text size is only controlled by font-size */
+	-webkit-text-size-adjust: none;
+	/* Improve text rendering */
+	-moz-osx-font-smoothing: grayscale;
+	-webkit-font-smoothing: antialiased;
+	text-rendering: optimizeLegibility;
+}
+
+/* Smooth scrolling for users that don't prefer reduced motion */
+@media (prefers-reduced-motion: no-preference) {
+	html:focus-within {
+		scroll-behavior: smooth;
+	}
+}
+
+body {
+	overflow-x: hidden;
+	font-family: 'ArialReplace', Arial, sans-serif;
+	font-weight: normal;
+	/* Allow percentage-based heights in the application */
+	min-block-size: 100%;
+	/* https://www.sarasoueidan.com/blog/safari-fluid-typography-bug-fix/ */
+	-webkit-marquee-increment: 0vw;
+}
+
+/* Improve media defaults */
+:where(img, svg, video, canvas, audio, iframe, embed, object) {
+	display: block;
+}
+:where(img, svg, video) {
+	block-size: auto;
+	max-inline-size: 100%;
+}
+
+/* Smaller line height for titles */
+:where(h1, h2, h3) {
+	line-height: 1.1;
+}
+/* Avoid text overflows */
+:where(p, h1, h2, h3, h4, h5, h6) {
+	overflow-wrap: break-word;
+}
+
+/* Remove list styles on ul, ol elements with a list role, which suggests default styling will be removed */
+:where(ul, ol)[role='list'] {
+	list-style: none;
+}
+
+/* More readable underline style for anchor tags without a class. This could be set on anchor tags globally, but it can cause conflicts. */
+a:not([class]) {
+	text-decoration-skip-ink: auto;
+}
+
+/* Make it clear that interactive elements are interactive */
+:where(a[href], area, button, input, label[for], select, summary, textarea, [tabindex]:not([tabindex*='-'])) {
+	cursor: pointer;
+	touch-action: manipulation;
+}
+:where(input[type='file']) {
+	cursor: auto;
+}
+:where(input[type='file'])::-webkit-file-upload-button,
+:where(input[type='file'])::file-selector-button {
+	cursor: pointer;
+}
+
+
+/* Make sure users can't select button text */
+:where(button, button[type], input[type='button'], input[type='submit'], input[type='reset']),
+:where(input[type='file'])::-webkit-file-upload-button,
+:where(input[type='file'])::file-selector-button {
+	-webkit-tap-highlight-color: transparent;
+	-webkit-touch-callout: none;
+	user-select: none;
+	text-align: center;
+}
+
+/* Disabled cursor for disabled buttons */
+:where(button, button[type], input[type='button'], input[type='submit'], input[type='reset'])[disabled] {
+	cursor: not-allowed;
+}
+
+/* END RESET */
+
+/* FONTS */
+@font-face {
+	font-family: 'Salome';
+	src: url('../assets/fonts/salome-webfont.woff2') format('woff2');
+	font-weight: normal;
+	font-style: normal;
+	font-display: swap;
+}
+/* END FONTS */
+
+body {
+	padding: 20px;
+
+	display: grid;
+	place-content: center;
+
+	color: #0EB9D7;
+	background-color: #0EB9D7;
+}
+
+h1 {
+	font-family: 'Salome', Georgia, 'Times New Roman', Times, serif;
+	font-size: 4.3rem;
+}
+
+h2 {
+	margin-block-start: 10px;
+	font-size: 1.3rem;
+	font-weight: bold;
+	color: white;
+}
+
+.card__content ul {
+	margin-block-start: 30px;
+	padding-inline-start: 1rem;
+}
+
+.card {
+	padding: 0 0 40px 0;
+	max-inline-size: 700px;
+	display: grid;
+	grid-template-columns: 1fr;
+	align-items: center;
+	gap: 40px;
+	overflow: hidden;
+	border-radius: 20px;
+	background-color: #251441;
+	filter: drop-shadow(0px 4px 6px rgba(37, 20, 65, 0.2)) drop-shadow(0px 8px 8px rgba(37, 20, 65, 0.2));
+}
+
+.card__content {
+	padding: 20px 16px 50px 16px;
+}
+
+.card__content h2 {
+	margin-block-start: 10px;
+}
+
+
+
+@media screen and (min-width: 663px) {
+	.card {
+		padding: 0 40px 0 0;
+		grid-template-columns: 1fr 1fr;
+	}
+}
